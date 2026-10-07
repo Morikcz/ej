@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GlitchZoneIntro.unity
+    guid: 18e71f233dcd5e949a9b8046198a8c8c
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: d096ab9ca27dd7a44bbfd9f4ff12ea67
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 163a04f50c5545a41beef53d3b0f5ff7
+  m_configObjects: {}
