@@ -11,9 +11,10 @@ public class Player : Sounds
     public static bool poBorot = true;
     public ControlType controlType;
     public enum ControlType{PC, Android}
+    //public float PCSpeed;
     public float Speed;
     public Joystick joy;
-
+    public GameObject SpeedSettings;
 
     [Header("HEALTH")]
     public float health = 100;
@@ -55,7 +56,8 @@ public class Player : Sounds
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -66,29 +68,30 @@ public class Player : Sounds
         }
 
         camAnim = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
+        
+        Speed = GLIS.Instance.sliderValue;
+        
     }
 
 
     // Update is called once per frame
     void Update()
-    {
-
+    {        
         fill = health / 100;
         bar.fillAmount = fill;
         
         if(controlType == ControlType.PC)
         {
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            
+            moveVelocity = moveInput * Speed;
         }
         else if(controlType == ControlType.Android)
         {
             moveInput = new Vector2(joy.Horizontal, joy.Vertical);
-
+            moveVelocity = moveInput * Speed;
         }
 
 
-        moveVelocity = moveInput * Speed;
 
         if(moveInput.x != 0 || moveInput.y != 0){
             if((joy.Horizontal <= 0.5 && joy.Horizontal >= -0.5) || (joy.Vertical <= 0.5 && joy.Vertical >= -0.5)){
