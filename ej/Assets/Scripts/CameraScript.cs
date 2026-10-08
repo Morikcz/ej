@@ -2,33 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-//using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.PostProcessing;
+//using UnityEngine.Rendering.Universal;
 
 
 public class CameraScript : MonoBehaviour
 {
 
 
-    private UniversalAdditionalCameraData  cameraData;
-    public Volume volume;
+   // private UniversalAdditionalCameraData  cameraData;
+    public PostProcessVolume postLayer;
+
+     
 
     void Start()
     {
-        cameraData = GetComponent<UniversalAdditionalCameraData>();
-        volume = GetComponent<Volume>();
-        Debug.Log(volume != null ? "Volume найден" : "Volume НЕ найден");
-    }
-    //переделать в START
+        postLayer = GetComponent<PostProcessVolume>();
 
-    void Update() {
         if(GLIS.Instance.postProcCheckB == 1){
-            volume.enabled = true;
+            //cameraData.renderPostProcessing = true;
+            postLayer.enabled = true;
+            Debug.Log("da");
 
         }
         else if(GLIS.Instance.postProcCheckB == 0){
-            volume.enabled = false;
+            //cameraData.renderPostProcessing = false;
+            postLayer.enabled = false;
+            Debug.Log("net");
         }
+
     }
+    //переделать в START
+
+    /*void Update() {
+        Debug.Log("GLIS.Instance: " + (GLIS.Instance == null ? "NULL" : "OK"));
+
+        if(GLIS.Instance.postProcCheckB == 1){
+            //cameraData.renderPostProcessing = true;
+            postLayer.enabled = false;
+            Debug.Log("da");
+
+        }
+        else if(GLIS.Instance.postProcCheckB == 0){
+            //cameraData.renderPostProcessing = false;
+            postLayer.enabled = false;
+            Debug.Log("net");
+        }
+
+    }*/
    
 }
